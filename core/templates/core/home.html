@@ -1,5 +1,149 @@
 {% extends "core/base.html" %}
-{% block title %}Inicio{% endblock %}
 {% block content %}
-  <p>Bienvenido. Usa el menú para navegar.</p>
+{% load static %}
+
+<div class="row g-4">
+  <!-- Bienvenida -->
+  <div class="col-12">
+    <div class="p-4 bg-white border rounded shadow-sm">
+      <h1 class="h4 mb-2">Bienvenido a BookClub</h1>
+      <p class="mb-0 text-muted">
+        Usa el menú o estos accesos rápidos para navegar entre los módulos del sistema.
+      </p>
+    </div>
+  </div>
+
+  <!-- Libros -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">📚 Libros</h5>
+        <p class="card-text">Explora, busca y administra tus libros registrados.</p>
+        <a href="{% url 'libro_list' %}" class="btn btn-primary btn-sm">Ver libros</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'libro_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nuevo libro</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Catálogos -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">🗂️ Catálogos</h5>
+        <p class="card-text">Consulta y administra los catálogos temáticos de publicaciones.</p>
+        <a href="{% url 'catalogo_list' %}" class="btn btn-primary btn-sm">Ver catálogos</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'catalogo_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nuevo catálogo</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Club de lectura -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">📖 Clubes de lectura</h5>
+        <p class="card-text">Crea o únete a clubes de lectura activos.</p>
+        <a href="{% url 'club_list' %}" class="btn btn-primary btn-sm">Ver clubes</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'club_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nuevo club</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Publicaciones -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">📰 Publicaciones</h5>
+        <p class="card-text">Administra las publicaciones realizadas por los usuarios.</p>
+        <a href="{% url 'publicacion_list' %}" class="btn btn-primary btn-sm">Ver publicaciones</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'publicacion_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nueva publicación</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Intercambios -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">🔄 Intercambios</h5>
+        <p class="card-text">Consulta los intercambios de libros entre usuarios.</p>
+        <a href="{% url 'intercambio_list' %}" class="btn btn-primary btn-sm">Ver intercambios</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'intercambio_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nuevo intercambio</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Reseñas -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">⭐ Reseñas</h5>
+        <p class="card-text">Lee y gestiona reseñas de libros publicadas por los lectores.</p>
+        <a href="{% url 'resena_list' %}" class="btn btn-primary btn-sm">Ver reseñas</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'resena_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nueva reseña</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventas -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">💰 Ventas</h5>
+        <p class="card-text">Consulta y administra las ventas realizadas en el sistema.</p>
+        <a href="{% url 'venta_list' %}" class="btn btn-primary btn-sm">Ver ventas</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'venta_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nueva venta</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Usuarios -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">👤 Usuarios (Negocio)</h5>
+        <p class="card-text">Gestiona los usuarios registrados en la base de datos de negocio.</p>
+        <a href="{% url 'usuario_list' %}" class="btn btn-primary btn-sm">Ver usuarios</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'usuario_create' %}" class="btn btn-outline-primary btn-sm ms-2">Nuevo usuario</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Tablas puente -->
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">🔗 Relación Usuario–Club</h5>
+        <p class="card-text">Consulta la relación entre usuarios y clubes de lectura.</p>
+        <a href="{% url 'usuarioclub_list' %}" class="btn btn-primary btn-sm">Ver relaciones</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title mb-2">📘 Relación Club–Libro</h5>
+        <p class="card-text">Consulta los libros asociados a cada club de lectura.</p>
+        <a href="{% url 'clublecturalibro_list' %}" class="btn btn-primary btn-sm">Ver asociaciones</a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
