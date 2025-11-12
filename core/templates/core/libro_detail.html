@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>{{ libro.titulo }}</h2>
+
+<p><strong>Author:</strong> {{ libro.autor }}</p>
+<p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+<p><strong>Year:</strong> {{ libro.anio_publicacion }}</p>
+<p><strong>Genre:</strong> {{ libro.genero }}</p>
+<p><strong>Mode:</strong> {{ libro.modalidad }}</p>
+<p><strong>Summary:</strong></p>
+<p>{{ libro.resumen }}</p>
+
+<!-- EDIT + DELETE BUTTONS (ONLY IF LOGGED IN) -->
+{% if request.user.is_authenticated %}
+    <a href="{% url 'libro_update' libro.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'libro_delete' libro.pk %}" class="btn btn-danger">Delete</a>
+{% endif %}
+
+<a href="{% url 'libro_list' %}" class="btn btn-secondary mt-3">Back</a>
+
+{% endblock %}

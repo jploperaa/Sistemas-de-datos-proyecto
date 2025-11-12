@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h1 class="mb-4">Book Library</h1>
+
+<!-- SEARCH FORM -->
+<form method="get" class="mb-3">
+    <input type="text" name="q" class="form-control"
+           placeholder="Search by title, author or ISBN..."
+           value="{{ request.GET.q }}">
+</form>
+
+<!-- NEW BOOK BUTTON (ONLY LOGGED USER) -->
+{% if request.user.is_authenticated %}
+    <a href="{% url 'libro_create' %}" class="btn btn-primary mb-3">+ New Book</a>
+{% endif %}
+
+<!-- BOOK LIST -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for libro in libros %}
+        <tr>
+            <td>{{ libro.isbn }}</td>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>
+                <a href="{% url 'libro_detail' libro.pk %}" class="btn btn-sm btn-info">View</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center text-muted">No books found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
